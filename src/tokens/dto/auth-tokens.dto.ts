@@ -1,4 +1,4 @@
-import { TokenDto } from './auth-token.dto';
+import { TokenDto } from './token.dto';
 
 export class AuthTokensDto {
 	constructor(partial: Partial<AuthTokensDto>) {

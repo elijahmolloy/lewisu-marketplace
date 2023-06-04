@@ -1,26 +1,52 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './entities/user.entity';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class UsersService {
-	create(createUserDto: CreateUserDto) {
-		return 'This action adds a new user';
+	constructor(
+		@InjectModel(User.name) private readonly userModel: Model<User>
+	) {}
+
+	public async create(createUserDto: CreateUserDto): Promise<User> {
+		throw new NotImplementedException();
 	}
 
-	findAll() {
-		return `This action returns all users`;
+	public async findAll(): Promise<User[]> {
+		throw new NotImplementedException();
 	}
 
-	findOne(id: number) {
-		return `This action returns a #${id} user`;
+	public async findOne(id: string): Promise<User> {
+		throw new NotImplementedException();
 	}
 
-	update(id: number, updateUserDto: UpdateUserDto) {
-		return `This action updates a #${id} user`;
+	public async findOneByEmail(email: string): Promise<User> {
+		throw new NotImplementedException();
 	}
 
-	remove(id: number) {
-		return `This action removes a #${id} user`;
+	public async update(
+		id: string,
+		updateUserDto: UpdateUserDto
+	): Promise<User> {
+		throw new NotImplementedException();
+	}
+
+	public async remove(id: string): Promise<User> {
+		throw new NotImplementedException();
+	}
+
+	private async isEmailTaken(
+		email: string,
+		excludeUserId: string = undefined
+	): Promise<boolean> {
+		const user = await this.userModel.findOne({
+			email,
+			_id: { $ne: excludeUserId }
+		});
+
+		return !!user;
 	}
 }
