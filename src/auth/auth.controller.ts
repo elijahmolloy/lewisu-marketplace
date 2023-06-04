@@ -1,7 +1,12 @@
 import { Controller, NotImplementedException, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
+import { ApiTags } from '@nestjs/swagger';
 
-@Controller('auth')
+@ApiTags('Auth')
+@Controller({
+	path: 'auth',
+	version: '1'
+})
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 

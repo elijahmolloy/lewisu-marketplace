@@ -6,18 +6,18 @@ import {
 	IsStrongPassword
 } from 'class-validator';
 
-export class CreateUserDto {
+export class RegisterRequestDto {
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({
-		example: 'Firstname'
+		example: 'Elijah'
 	})
 	firstName: string;
 
 	@IsString()
 	@IsNotEmpty()
 	@ApiProperty({
-		example: 'Lastname'
+		example: 'Molloy'
 	})
 	lastName: string;
 
